@@ -2,6 +2,10 @@
 
 南京大学软件学院嵌入式综合实践: `WAVE` car work`S`pace.
 
+## 文档
+
+见 `doc/waves.docx`.
+
 ## 环境配置
 
 初始化工作空间:
