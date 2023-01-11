@@ -1,0 +1,6 @@
+**/build/**
+**/devel/**
+**/*.tar.gz
+src/CMakeLists.txt
+.projectile
+.catkin_workspace
