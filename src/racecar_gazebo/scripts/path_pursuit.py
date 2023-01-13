@@ -28,7 +28,7 @@ class following_path:
         self.acceleration = 0.0
         self.LOOKAHEAD_DISTANCE = 0.4
         self.Low_Speed_Mode = False
-        
+
     def callback_read_path(self, data):
         # Organize the pose message and only ask for (x,y) and orientation
         # Read the Real time pose message and load them into path_info
@@ -91,7 +91,7 @@ class following_path:
 
             for i in range(len(path_points_x)):
                 dist_array[i] = self.dist((path_points_x[i], path_points_y[i]), (x,y))
-            
+
             goal = np.argmin(dist_array) # Assume the closet point as the goal point at first
             goal_array = np.where((dist_array < (self.LOOKAHEAD_DISTANCE + 0.3)) & (dist_array > (self.LOOKAHEAD_DISTANCE - 0.3)))[0]
             for id in goal_array:
@@ -103,9 +103,9 @@ class following_path:
                     break
 
             L = dist_array[goal]
-            # 3. Transform the goal point to vehicle coordinates. 
-            glob_x = path_points_x[goal] - x 
-            glob_y = path_points_y[goal] - y 
+            # 3. Transform the goal point to vehicle coordinates.
+            glob_x = path_points_x[goal] - x
+            glob_y = path_points_y[goal] - y
             goal_x_veh_coord = glob_x*np.cos(yaw) + glob_y*np.sin(yaw)
             goal_y_veh_coord = glob_y*np.cos(yaw) - glob_x*np.sin(yaw)
 
@@ -124,15 +124,15 @@ class following_path:
             ackermann_control = AckermannDriveStamped()
             ackermann_control.drive.speed = VELOCITY
             ackermann_control.drive.steering_angle = angle
-            ackermann_control.drive.steering_angle_velocity = self.steering_velocity   
+            ackermann_control.drive.steering_angle_velocity = self.steering_velocity
         else:
             ackermann_control = AckermannDriveStamped()
             ackermann_control.drive.speed = 0.0
             ackermann_control.drive.steering_angle = 0.0
             ackermann_control.drive.steering_angle_velocity = 0.0
-        
+
         self.navigation_input.publish(ackermann_control)
-    
+
     # Computes the Euclidean distance between two 2D points p1 and p2
     def dist(self, p1, p2):
 	try:
@@ -144,7 +144,7 @@ class following_path:
     def find_angle(self, v1, v2):
         cos_ang = np.dot(v1, v2)
         sin_ang = LA.norm(np.cross(v1, v2))
-        return np.arctan2(sin_ang, cos_ang) 
+        return np.arctan2(sin_ang, cos_ang)
 
     # Control the speed of the car within the speed limit
     def speed_control(self, angle, MIN_VELOCITY, MAX_VELOCITY):
@@ -156,7 +156,7 @@ class following_path:
             Velocity = k * abs(angle) + MAX_VELOCITY
         return Velocity
 
-    
+
 if __name__ == "__main__":
 
     rospy.init_node("pursuit_path")
