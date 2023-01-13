@@ -6,4 +6,7 @@ src/CMakeLists.txt
 .catkin_workspace
 
 doc/*
-!doc/waves.docx
+!doc/waves.pdf
+!doc/usage.pdf
+!doc/work.pdf
+!doc/demo.mp4

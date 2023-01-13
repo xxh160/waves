@@ -8,6 +8,9 @@
   <!-- Launch the built-map -->
   <node name="map_server" pkg="map_server" type="map_server" args="$(find racecar_gazebo)/map/map_runway.yaml" />
 
+  <!-- Localization 定位 -->
+  <!-- <include file="$(find racecar_gazebo)/launch/amcl.launch" /> -->
+
   <!--Launch the move base with time elastic band-->
   <param name="/use_sim_time" value="true"/>
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
