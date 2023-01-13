@@ -4,31 +4,11 @@
 
 ## 文档
 
-见 `doc/waves.docx`.
+技术报告见 `doc/waves.pdf`.
 
-## 环境配置
+使用手册见 `doc/usage.pdf`.
 
-初始化工作空间:
+分工情况见 `doc/work.pdf`.
 
-```bash
-cd /your/path/to/waves/src
-catkin_init_workspace
-```
-
-编译源码:
-
-```bash
-cd /your/path/to/waves
-catkin_make
-```
-
-设置环境变量:
-
-```bash
-cd /your/path/to/waves
-source ./devel/setup.[yourshell]
-
-# 例如对于 bash 用户
-source ./devel/setup.bash
-```
+视频演示见 `doc/demo.mp4`.
 
